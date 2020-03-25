@@ -1,0 +1,57 @@
+
+C:\Users\Liyie\django_project>python manage.py shell
+Python 3.7.4 (tags/v3.7.4:e09359112e, Jul  8 2019, 19:29:22) [MSC v.1916 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from blog.models import Posts
+>>> from django.contrib.auth.models import User
+>>> Posts.objects.all()
+<QuerySet [<Posts: Blog 1>]>
+>>> user = User.objects.filter(username='yuehh').first()
+>>> user
+<User: yuehh>
+>>> post_2 = Posts(title='Blog 2', content='Second Post Content!'
+... author_id = user.id)
+  File "<console>", line 2
+    author_id = user.id)
+            ^
+SyntaxError: invalid syntax
+>>> post_2 = Posts(title='Blog 2', content= 'Second Post Content!', author_id=user.id)
+>>> psot.save()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'psot' is not defined
+>>> post2.save()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'post2' is not defined
+>>> post_2.save()
+>>> Posts.objects.all()
+<QuerySet [<Posts: Blog 1>, <Posts: Blog 2>]>
+>>> post = Posts.objects.first()
+>>> post.content
+'First Post Content!'
+>>> post.date_posted
+datetime.datetime(2019, 11, 23, 22, 45, 56, 163153, tzinfo=<UTC>)
+>>> post.author
+<User: yuehh>
+>>> post.author.email
+'yuehwhan@gmail.com'
+>>> user
+<User: yuehh>
+>>> user.post_set
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'User' object has no attribute 'post_set'
+>>> user.posts_set
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x04314C70>
+>>> user.posts_set.all()
+<QuerySet [<Posts: Blog 1>, <Posts: Blog 2>]>
+>>> user.post_set.create(title='Blog 3', content='Third Post Content!')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'User' object has no attribute 'post_set'
+>>> user.posts_set.create(title='Blog 3', content='Third Post Content!')
+<Posts: Blog 3>
+>>> Posts.objects.all()
+<QuerySet [<Posts: Blog 1>, <Posts: Blog 2>, <Posts: Blog 3>]>
