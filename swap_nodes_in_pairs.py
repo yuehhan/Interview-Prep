@@ -22,3 +22,13 @@ class Solution(object):
             cur = cur.next
             pre = nxt.next
         return dummy.next
+
+# Recursive Solution
+
+# def swapPairs(self, head):
+#     if head and head.next:
+#         tmp = head.next
+#         head.next = self.swapPairs(tmp.next)
+#         tmp.next = head
+#         return tmp
+#     return head
