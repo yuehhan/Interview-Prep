@@ -7,7 +7,6 @@
 # Note: Numbers in the additive sequence cannot have leading zeros, so sequence 1, 2, 03 or 1, 02, 3 is invalid.
 
 class Solution:
-    
     def isAdditiveNumber(self, num: str) -> bool:
         for i in range(1, len(num)):
             for j in range(i+1, len(num)):
